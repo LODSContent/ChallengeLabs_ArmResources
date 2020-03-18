@@ -1,3 +1,5 @@
+#WinVM_IIS ARM Template
+
 This repo contains an ARM template that you can use to deploy a Windows Azure VM with IIS installed. 
 The default web page is customized to display the Azure VM name.
 
