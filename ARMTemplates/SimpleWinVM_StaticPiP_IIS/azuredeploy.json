@@ -18,6 +18,7 @@
     },
     "dnsLabelPrefix": {
       "type": "string",
+      "defaultValue":"[concat ('lodsoc', uniquestring(resourceGroup().id))]",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
@@ -63,6 +64,13 @@
       "metadata": {
         "description": "The address prefix for the subnet."
       }  
+    },
+    "PiPSkuName": {
+      "type": "string",
+      "defaultValue": "Basic",      
+      "metadata": {
+        "description": "The Public IP address SKU name: Standard (Static IP) or Basic (Dynamic)."
+      }
     },
     "vmName": {
       "type": "string",
@@ -142,13 +150,7 @@
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sawinvm')]",
     "nicName": "myVMNic",
-    "PiPSkuName": "Standard",
-    "addressPrefix": "10.0.0.0/16",
-    "subnetName": "Subnet1",
-    "subnetPrefix": "10.0.0.0/24",
-    "publicIPAddressName": "myPublicIP",
-    "vmName": "WinVM",
-    "virtualNetworkName": "vNET1",
+    "publicIPAddressName": "PublicIP",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('subnetName'))]",
     "vmExtensionName": "dscExtension",
     "networkSecurityGroupName": "default-NSG"
@@ -171,7 +173,7 @@
       "name": "[variables('publicIPAddressName')]",
       "location": "[parameters('location')]",
       "sku": {
-       "name": "[variables('PiPSkuName')]"
+       "name": "[parameters('PiPSkuName')]"
        },
       "properties": {
         "publicIPAllocationMethod": "Static",
