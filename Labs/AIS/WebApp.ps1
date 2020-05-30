@@ -14,7 +14,7 @@ configuration WebApp
         GetScript = { @{ Result = (Test-Path -Path 'C:\inetpub\wwwroot\index.html') } }
         SetScript = {
             $outFile = 'C:\inetpub\wwwroot\index.html'
-            Invoke-WebRequest 'https://raw.githubusercontent.com/grabinski/ais-007/master/index.html' -OutFile $outFile
+            Invoke-WebRequest 'https://raw.githubusercontent.com/LODSContent/ChallengeLabs_ArmResources/master/Labs/AIS/index.html' -OutFile $outFile
             Unblock-File -Path $outFile
         }
         TestScript = { Test-Path -Path 'C:\inetpub\wwwroot\index.html' }
