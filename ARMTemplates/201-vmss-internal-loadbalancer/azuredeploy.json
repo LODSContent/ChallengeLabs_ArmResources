@@ -67,10 +67,10 @@
     }
   },
   "variables": {
-    "namingInfix": "[toLower(substring(concat(parameters('vmssName'), uniqueString(resourceGroup().id)), 0, 9))]",
+    "namingInfix": "[toLower(parameters('vmssName'))]",
     "newStorageAccountSuffix": "[concat(variables('namingInfix'), 'sa')]",
     "longNamingInfix": "[toLower(parameters('vmssName'))]",
-    "jumpBoxName": "[concat(variables('namingInfix'), 'jbox')]",
+    "jumpBoxName": "[concat('vm', resourceGroup().tags['LabInstance'],'jbox')]",
     "jumpBoxSAName": "[concat(uniqueString(concat(resourceGroup().id, variables('newStorageAccountSuffix'), 'jumpboxsa')), 'jb')]",
     "jumpBoxOSDiskName": "[concat(variables('jumpBoxName'), 'osdisk')]",
     "jumpBoxVHDContainerName": "[concat(variables('jumpBoxName'), 'vhd')]",
