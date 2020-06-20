@@ -29,10 +29,11 @@
     },
     "instanceCount": {
       "type": "int",
+      "defaultValue": 2,
       "metadata": {
-        "description": "Number of VM instances (100 or less)."
+        "description": "Number of VM instances (4 or less)."
       },
-      "maxValue": 100
+      "maxValue": 4
     },
     "adminUsername": {
       "type": "string",
@@ -49,7 +50,7 @@
     },
     "authenticationType": {
       "type": "string",
-      "defaultValue": "sshPublicKey",
+      "defaultValue": "password",
       "allowedValues": [
         "sshPublicKey",
         "password"
