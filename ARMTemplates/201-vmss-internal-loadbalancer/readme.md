@@ -1,7 +1,7 @@
 
 # Deployment of a VM Scale Set of Linux VMs behind an load balancer with NAT rules
 
-**NOTE:** This template was is a copy of the Microsoft [201-vmss-internal-loadbalancer](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-internal-loadbalancer) Azure Quick Start template and is provided here only to support labs on the LODS platform. Please note that this copy of the original template was modified for the labs on the LODS platorm that use it.
+**NOTE:** This template is a  *modified* copy of the Microsoft [201-vmss-internal-loadbalancer](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-internal-loadbalancer) Azure Quick Start template and is provided here only to support labs on the LODS platform. 
 
 
 
