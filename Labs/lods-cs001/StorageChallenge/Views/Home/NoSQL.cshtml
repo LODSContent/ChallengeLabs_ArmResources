@@ -1,0 +1,140 @@
+﻿@model StorageChallenge.Models.CosmosTestData
+@using StorageChallenge.Controllers
+@using StorageChallenge.Testing
+
+@{
+    /**/
+
+    ViewBag.Title = "NoSQL";
+}
+
+<h2>NoSQL</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Advanced)
+
+    if (Model.Advanced)
+    {
+        <p>To complete this challenge you must set the following application settings:</p>
+        <ul>
+            <li>ListingsURI</li>
+            <li>ListingsKey</li>
+            <li>SearchAccount (name only, not the full URI)</li>
+            <li>SearchKey</li>
+        </ul>
+        <p>if you have set these values, click the test button below to verify your results.</p>
+        @Html.HiddenFor(model => model.CosmosDBUri)
+        @Html.HiddenFor(model => model.CosmosDBKey)
+        @Html.HiddenFor(model => model.SearchName)
+        @Html.HiddenFor(model => model.SearchKey)
+
+    }
+    else if (TestType.TestCosmosDB)
+    {
+        <p>To test your results, enter the URI and access key for your Cosmos DB account then click Test.</p>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CosmosDBUri, htmlAttributes: new { @class = "control-label " })
+            @Html.EditorFor(model => model.CosmosDBUri, new { htmlAttributes = new { @class = "form-control", placeholder = "enter Cosmos DB URI" } })
+            @Html.ValidationMessageFor(model => model.CosmosDBUri, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CosmosDBKey, htmlAttributes: new { @class = "control-label " })
+            @Html.EditorFor(model => model.CosmosDBKey, new { htmlAttributes = new { @class = "form-control", placeholder = "enter Cosmos DB key" } })
+            @Html.ValidationMessageFor(model => model.CosmosDBKey, "", new { @class = "text-danger" })
+        </div>
+        @Html.HiddenFor(model => model.SearchName)
+        @Html.HiddenFor(model => model.SearchKey)
+
+    }
+    else
+    {
+        <p>To test your results, enter the name and access key for your Azure Search account then click Test.</p>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SearchName, htmlAttributes: new { @class = "control-label " })
+            @Html.EditorFor(model => model.SearchName, new { htmlAttributes = new { @class = "form-control", placeholder = "enter Azure Search account name" } })
+            @Html.ValidationMessageFor(model => model.SearchName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SearchKey, htmlAttributes: new { @class = "control-label " })
+            @Html.EditorFor(model => model.SearchKey, new { htmlAttributes = new { @class = "form-control", placeholder = "enter Azure Search account key" } })
+            @Html.ValidationMessageFor(model => model.SearchKey, "", new { @class = "text-danger" })
+        </div>
+        @Html.HiddenFor(model => model.CosmosDBKey)
+        @Html.HiddenFor(model => model.CosmosDBUri)
+    }
+    <div class="form-group">
+        <input type="submit" value="Test" class="btn btn-default" />
+    </div>
+
+
+}
+@if (!ViewBag.Result.Ignore)
+{
+    <h3>@ViewBag.Result.Status</h3>
+
+    if (ViewBag.Result.AllListings.Count > 0)
+    {
+        <h4> Cosmos DB documents</h4>
+        <h5> State = 'CA'</h5>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Address</th>
+                    <th scope="col">City</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var listing in ViewBag.Result.AllListings)
+                {
+                    <tr>
+                        <td>@listing.Street</td>
+                        <td>@listing.City</td>
+                        <td>@listing.State</td>
+                        <td>@listing.Description</td>
+                        <td>@listing.Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    if (ViewBag.Result.SearchResults.Count > 0)
+    {
+        <h4>Search Results</h4>
+        <h5>Price &lt; $900,000,000,000</h5>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Address</th>
+                    <th scope="col">City</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var listing in ViewBag.Result.SearchResults)
+                {
+                    <tr>
+                        <td>@listing.Street</td>
+                        <td>@listing.City</td>
+                        <td>@listing.State</td>
+                        <td>@listing.Description</td>
+                        <td>@listing.Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

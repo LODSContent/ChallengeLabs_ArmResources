@@ -1,0 +1,115 @@
+﻿@model StorageChallenge.Models.SQLTestData
+@using StorageChallenge.Controllers
+@using StorageChallenge.Testing
+
+@{
+    ViewBag.Title = "Database";
+}
+
+<h2>Database Test</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    if (Model.Advanced)
+    {
+        <p>To complete this challenge you must set the following application settings:</p>
+        <ul>
+            <li>CorpDataConnectionString</li>
+            <li>CustomerDataConnectionString</li>
+        </ul>
+        <p>if you have set these values, click the test button below to verify your results.</p>
+        @Html.HiddenFor(model => model.MySQLConnection)
+        @Html.HiddenFor(model => model.SQLConnection)
+
+    }
+    else if (TestType.TestSQLServer)
+    {
+        {<p>To test your results, enter the connection string for your SQL Server database then click Test.</p>}
+        <div class="form-group">
+            @Html.LabelFor(model => model.SQLConnection, htmlAttributes: new { @class = "control-label " })
+            @Html.EditorFor(model => model.SQLConnection, new { htmlAttributes = new { @class = "form-control", placeholder = "enter connection string" } })
+            @Html.ValidationMessageFor(model => model.SQLConnection, "", new { @class = "text-danger" })
+        </div>
+        @Html.HiddenFor(model => model.MySQLConnection)
+    }
+    else
+    {
+        {<p>To test your results, enter the connection string for your MySQL database then click Test.</p>}
+        <div class="form-group">
+            @Html.LabelFor(model => model.MySQLConnection, htmlAttributes: new { @class = "control-label " })
+            @Html.EditorFor(model => model.MySQLConnection, new { htmlAttributes = new { @class = "form-control", placeholder = "enter connection string" } })
+            @Html.ValidationMessageFor(model => model.MySQLConnection, "", new { @class = "text-danger" })
+        </div>
+        @Html.HiddenFor(model => model.SQLConnection)
+    }
+    @Html.HiddenFor(model => model.Advanced)
+
+
+
+    <div class="form-group">
+        <input type="submit" value="Test" class="btn btn-default" />
+    </div>
+
+}
+
+@if (!ViewBag.Result.Ignore)
+{
+    <h3>@ViewBag.Result.Status</h3>
+
+    if (ViewBag.Result.Customers.Count > 0)
+    {
+        <h4>Customer Data</h4>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var customer in ViewBag.Result.Customers)
+                {
+                    <tr>
+                        <th scope="col">@customer.id</th>
+                        <th scope="col">@customer.name</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    if (ViewBag.Result.SalesPeople.Count > 0)
+    {
+        <h4>Seller Data</h4>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">First name</th>
+                    <th scope="col">Last name</th>
+                    <th scope="col">Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var seller in ViewBag.Result.SalesPeople)
+                {
+                    <tr>
+                        <th scope="col">@seller.ID</th>
+                        <th scope="col">@seller.FirstName</th>
+                        <th scope="col">@seller.LastName</th>
+                        <th scope="col">@seller.Phone</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

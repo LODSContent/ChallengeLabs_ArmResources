@@ -1,0 +1,38 @@
+﻿@using StorageChallenge.Testing
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>RealInfo Test Application</h1>
+    <p class="lead">RealInfo is an information management web app for realtors.  The three main componenets of the application are a document management system, a customer management database, and a property information system. This web app is designed to test data entities created for RealInfo.  Each component of the system has it's own test page.  Click the links below or in the menu above to reach the desired test page.</p>
+</div>
+
+<div class="row">
+   @if (TestType.TestStorage)
+   {
+    <div class="col-md-4">
+        <h2>Document Management</h2>
+        <p>
+            RealInfo allows realtors to manage documents such as proposals and contracts.  This application tests public and private access blob containers required to support RealInfo.
+        </p>
+        <p><a class="btn btn-default" href="/Home/Files">Test Blob Containers &raquo;</a></p>
+    </div>
+   }
+   @if (TestType.TestRelational)
+   {
+    <div class="col-md-4">
+        <h2>Customer Management</h2>
+        <p>RealInfo tracks buyers and sellers using a combination of SQL Server and MySQL databases. This application tests the configuration of the SQL Server and MySQL databases. </p>
+        <p><a class="btn btn-default" href="/Home/Database">Test Relational Databases &raquo;</a></p>
+    </div>
+   }
+   @if (TestType.TestNoSQL)
+   {
+    <div class="col-md-4">
+        <h2>Property Information Management</h2>
+        <p>RealInfo manages listings using JSON formatted documents that are searchable.  This application tests the Cosmos DB database and search service configuration required for RealInfo.</p>
+        <p><a class="btn btn-default" href="/Home/NoSQL">Test NoSQL Data &raquo;</a></p>
+    </div>
+   }
+</div>

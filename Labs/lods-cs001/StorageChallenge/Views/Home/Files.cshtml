@@ -1,0 +1,97 @@
+﻿@model StorageChallenge.Models.FileTestData
+@using StorageChallenge.Controllers
+@using StorageChallenge.Testing
+@{
+    ViewBag.Title = "Files";
+}
+
+<h2>File Test</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Advanced)
+    <div class="form-horizontal">
+
+        @if (Model.Advanced)
+        {
+            <p>To complete this challenge you must set the following application settings:</p>
+            <ul>
+                <li>StorageAccountName</li>
+                <li>StorageAccountKey</li>
+                <li>StorageAccountSAS</li>
+            </ul>
+            <p>if you have set these values, click the test button below to verify your results.</p>
+            @Html.HiddenFor(model => model.storageAccountName)
+            @Html.HiddenFor(model => model.storageAccountKey)
+            @Html.HiddenFor(model => model.storageAccountSAS)
+
+        }
+        else
+        {
+            if (TestType.TestPrivateStorage)
+            {<p>To test your results, enter your account name, account key and Shared Access Signature then click Test.</p>}
+            else
+            {<p>To test your results, enter your account name and account key then click Test.</p>}
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.storageAccountName, htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.storageAccountName, new { htmlAttributes = new { @class = "form-control", placeholder = "enter name" } })
+                @Html.ValidationMessageFor(model => model.storageAccountName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.storageAccountKey, htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.storageAccountKey, new { htmlAttributes = new { @class = "form-control", placeholder = "enter key" } })
+                @Html.ValidationMessageFor(model => model.storageAccountKey, "", new { @class = "text-danger" })
+            </div>
+            if (TestType.TestPrivateStorage)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.storageAccountSAS, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.storageAccountSAS, new { htmlAttributes = new { @class = "form-control", placeholder = "enter SAS" } })
+                    @Html.ValidationMessageFor(model => model.storageAccountSAS, "", new { @class = "text-danger" })
+                </div>
+            }
+        }
+        <div class="form-group">
+            <input type="submit" value="Test" class="btn btn-default" />
+        </div>
+
+        @if (!ViewBag.Result.Ignore)
+        {
+            <h3>@ViewBag.Result.Status</h3>
+            if (ViewBag.Result.PublicBlobs.Count > 0)
+            {
+                <h4>These are the files in the public container.  These links should return files.</h4>
+                <ul>
+                    @foreach (var uri in (List<string>)ViewBag.Result.PublicBlobs)
+                    {
+                        <li> <a href="@Html.Raw(uri)" target="_blank">@Html.Raw(uri)</a></li>
+                    }
+                </ul>
+            }
+            if (ViewBag.Result.PrivateBlobs.Count > 0)
+            {
+                <h4> These are the files in the private container without a SAS.These links should fail.</h4>
+                <ul>
+
+                    @foreach (var uri in (List<string>)ViewBag.Result.PrivateBlobs)
+                    {
+                        <li> <a href="@Html.Raw(uri)" target="_blank"> @Html.Raw(uri) </a></li>
+                    }
+                </ul>
+                <h4>These are the files in the private container with a SAS.  These links should return files.</h4>
+                <ul>
+                    @foreach (var uri in (List<string>)ViewBag.Result.PrivateBlobs)
+                    {
+                        <li> <a href='@Html.Raw(uri + "?" + ViewBag.Result.SAS)' target="_blank">@Html.Raw(uri + "?" + ViewBag.Result.SAS)</a></li>
+                    }
+                </ul>
+            }
+        }
+    </div>
+}
+
+
+
