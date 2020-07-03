@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="/" />
+  <setParameter name="CorpDataConnectionString-Web.config Connection String" value="xxx" />
+  <setParameter name="CustomerDataConnectionString-Web.config Connection String" value="xxx" />
+</parameters>
