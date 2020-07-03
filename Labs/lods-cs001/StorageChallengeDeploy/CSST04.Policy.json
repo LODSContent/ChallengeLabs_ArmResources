@@ -1,0 +1,21 @@
+﻿{
+  "if": {
+    "anyof": [
+      {
+        "not": {
+          "field": "type",
+          "in": [
+            "Microsoft.Sql/servers",
+            "Microsoft.Sql/servers/*"
+          ]
+        }
+      }
+ 
+    ]
+
+  },
+  "then": {
+    "effect": "deny"
+  }
+}
+

@@ -1,0 +1,21 @@
+﻿{
+  "if": {
+    "anyof": [
+      {
+        "not": {
+          "field": "type",
+          "in": [
+            "Microsoft.DBforMySQL/servers",
+            "Microsoft.DBforMySQL/servers/*"
+          ]
+        }
+      }
+
+    ]
+
+  },
+  "then": {
+    "effect": "deny"
+  }
+}
+

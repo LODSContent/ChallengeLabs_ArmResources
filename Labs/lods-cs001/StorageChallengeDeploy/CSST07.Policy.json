@@ -1,0 +1,20 @@
+﻿{
+  "if": {
+    "anyof": [
+      {
+        "not": {
+          "field": "type",
+          "in": [
+             "Microsoft.DocumentDB/databaseAccounts",
+            "Microsoft.DocumentDB/databaseAccounts/*"
+          ]
+        }
+      }
+    ]
+
+  },
+  "then": {
+    "effect": "deny"
+  }
+}
+

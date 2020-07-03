@@ -1,0 +1,56 @@
+﻿{
+  "if": {
+    "anyof": [
+      {
+        "not": {
+          "field": "type",
+          "in": [
+            "Microsoft.Storage/storageAccounts",
+            "Microsoft.Storage/storageAccounts/*",
+            "Microsoft.DBforMySQL/servers",
+            "Microsoft.DBforMySQL/servers/*",
+            "Microsoft.Sql/servers",
+            "Microsoft.Sql/servers/*",
+            "Microsoft.DocumentDB/databaseAccounts",
+            "Microsoft.DocumentDB/databaseAccounts/*",
+            "Microsoft.Search/searchServices",
+            "Microsoft.Search/searchServices/*"
+          ]
+        }
+      },
+      {
+        "allof": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Search/searchServices"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Search/searchServices/sku.name",
+              "in": [ "basic" ]
+            }
+          }
+        ]
+      },
+      {
+        "allof": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Storage/storageAccounts"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Storage/storageAccounts/sku.name",
+              "in": [ "Standard_LRS" ]
+            }
+          }
+        ]
+      }
+    ]
+
+  },
+  "then": {
+    "effect": "deny"
+  }
+}
+

@@ -1,0 +1,36 @@
+﻿{
+  "if": {
+    "anyof": [
+      {
+        "not": {
+          "field": "type",
+          "in": [
+            "Microsoft.DocumentDB/databaseAccounts",
+            "Microsoft.DocumentDB/databaseAccounts/*",
+            "Microsoft.Search/searchServices",
+            "Microsoft.Search/searchServices/*"
+          ]
+        }
+      },
+      {
+        "allof": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Search/searchServices"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Search/searchServices/sku.name",
+              "in": [ "basic" ]
+            }
+          }
+        ]
+      }
+    ]
+
+  },
+  "then": {
+    "effect": "deny"
+  }
+}
+
