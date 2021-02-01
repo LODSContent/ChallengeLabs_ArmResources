@@ -18,7 +18,7 @@
         },
         "imageSku": {
             "type": "string",
-            "defaultValue": "2016-Datacenter",
+            "defaultValue": "2019-Datacenter",
             "allowedValues": [
               "2012-R2-Datacenter",
               "2016-Datacenter",
