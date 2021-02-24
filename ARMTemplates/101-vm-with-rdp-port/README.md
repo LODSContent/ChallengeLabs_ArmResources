@@ -1,5 +1,5 @@
 # Create a VM with an RDP port
-
+**NOTE:** This template is a copy of the Microsoft [101-vm-with-rdp-port](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-with-rdp-port) Azure Quick Start template and is provided here only to support labs on the LODS platform.
 
 [![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FLODSContent%2FChallengeLabs_ArmResources%2Fmaster%2FARMTemplates%2F101-vm-with-rdp-port%2Fazuredeploy.json) 
 
