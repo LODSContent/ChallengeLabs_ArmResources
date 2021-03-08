@@ -12,8 +12,6 @@ Your time is precious, why spend it on trying to integrate multiple tools. Lose 
 
 This template will deploy *all* the OMS services into a Resource Group
 
-![alt text](images/resourcegroup.png "OMS")
-
 * Azure Log Analytics
 
 Instead of spending time adding data sources to your workspace and constructing the search queries for common scenarios, you will have multiple solutions enabled by default, common Windows and Linux logs present, as well as some of the most used performance counters regardless of platform. With saved searches categorized in the workspace, it is easy to get started immediately after you have added your machines to the workspace
@@ -35,17 +33,11 @@ You can leverage the pre-created storage account as target for your replication 
 
 * Enable Azure IaaS Backup using a runbook
 
-![alt text](images/runbook.png "runbook")
 
 * Add Hyper-V hosts to your primary Hyper-V site and associate them with the default replication policy
 
-![alt text](images/hvsite.png "HyperV")
-
-![alt text](images/hvpolicy.png "HVPolicy")
 
 * Associate your Management/Configuration Servers with the default replication policy
-
-![alt text](images/vmwarepolicy.png "VMware")
 
 * Explore the solutions within Log Analytics after adding VMs/servers and storage accounts
 
@@ -56,25 +48,14 @@ The template will enable the following solutions:
 	* System Update Assessment
 	* Agent Health
 
-![alt text](images/la.png "Log Analytics")
 
 Explore a rich list of saved searches within Log Search
 
-![alt text](images/searches.png "Searches")
-
 Explore the Agent Health solution
-
-![alt text](images/agents.png "Agents overview")
 
 Explore the Updates solution
 
-![alt text](images/updates.png "Updates")
-
 Explore the Security solution
-
-![alt text](images/security.png "Security overview")
-
-*This template will be updated to add more capabilities*
 
        
 
