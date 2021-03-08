@@ -1,6 +1,6 @@
 # Microsoft Operations Management Suite
 
-## NOTE: This is a copy of the oms-all-deploy templates from the Microsoft Azure Quickstart templates to support challenge labs. 
+#### NOTE: This is a copy of the [oms-all-deploy](https://github.com/Azure/azure-quickstart-templates/tree/master/oms-all-deploy) templates from the Microsoft Azure Quickstart templates to support challenge labs. 
 
 
 [![Deploy to Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Foms-all-deploy%2F%2Fazuredeploy.json) 
