@@ -10,7 +10,7 @@
     },
     "omsRecoveryVaultRegion": {
       "type": "string",
-      "defaultValue": "West Europe",
+      "defaultValue": "East US 2",
       "allowedValues": [
         "West US",
         "East US",
@@ -42,7 +42,7 @@
     },
     "omsWorkspaceRegion": {
       "type": "string",
-      "defaultValue": "West Europe",
+      "defaultValue": "East US",
       "allowedValues": [
         "Australia Southeast",
         "East US",
@@ -65,7 +65,7 @@
     },
     "omsAutomationRegion": {
       "type": "string",
-      "defaultValue": "West Europe",
+      "defaultValue": "East US 2",
       "allowedValues": [
         "Japan East",
         "East US 2",
@@ -84,7 +84,7 @@
     },
     "_artifactsLocation": {
       "type": "string",
-      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/oms-all-deploy",
+      "defaultValue": "https://raw.githubusercontent.com/LODSContent/ChallengeLabs_ArmResources/master/ARMTemplates/oms-all-deploy",
       "metadata": {
         "description": "The base URI where artifacts required by this template are located"
       }
