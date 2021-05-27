@@ -32,7 +32,7 @@
         }
       },
       "adminUsername": {
-        "type": "string",
+        "type": "string",         
         "metadata": {
           "description": "Admin username on all VMs."
         }
