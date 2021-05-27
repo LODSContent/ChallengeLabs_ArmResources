@@ -28,7 +28,7 @@
         "minValue": 1,
         "maxValue": 3,
         "metadata": {
-          "description": "Number of VM instances (100 or less)."
+          "description": "Number of VM instances (3 or less)."
         }
       },
       "adminUsername": {
@@ -297,7 +297,7 @@
               "name": "Profile1",
               "capacity": {
                 "minimum": "1",
-                "maximum": "10",
+                "maximum": "3",
                 "default": "1"
               },
               "rules": [
