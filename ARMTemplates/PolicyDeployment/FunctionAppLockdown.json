@@ -1,6 +1,6 @@
 {
-    //"$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",    
+    // "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#", //Use to deploy at subscription level with New-AzDeployment cmdlet
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",    //Use to scope to resource group with New-AzResourceGroupDeployment cmdlet
     "contentVersion": "1.0.0.0",
     "variables": {
         "policyName": "ARM_OC_FunctionApp_WebApp_Lockdown",
