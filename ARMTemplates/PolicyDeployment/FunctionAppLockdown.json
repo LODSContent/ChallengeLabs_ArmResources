@@ -1,0 +1,103 @@
+{
+    //"$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",    
+    "contentVersion": "1.0.0.0",
+    "variables": {
+        "policyName": "ARM_OC_FunctionApp_WebApp_Lockdown",
+        "policyDisplayName": "Function and WebApp Lockdown",
+        "policyDescription": "This policy restricts resources to those required for a named function app. Resources limited by name, sku, tier, and location."
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Authorization/policyDefinitions",
+            "name": "[variables('policyName')]",
+            "apiVersion": "2019-09-01",
+            "properties": {
+                "displayName": "[variables('policyDisplayName')]",
+                "policyType": "Custom",
+                "description": "[variables('policyDescription')]",
+                "metadata": {
+                    "category": "General"
+                },
+                "mode": "All",
+                "parameters": {},
+                "policyRule": {
+                "if": {
+                  "not": {
+                    "anyOf": [
+                      {
+                        "allOf": [
+                          {
+                            "field": "type",
+                            "equals": "Microsoft.Web/sites"
+                          },
+                          {
+                            "field": "name",
+                            "in": [
+                              "[[concat('fa-',resourcegroup().tags.LabInstance)]"
+                            ]
+                          },
+                          {
+                            "field": "location",
+                            "In": [
+                              "[[resourceGroup().location]"
+                            ]
+                          },
+                          {
+                            "field": "location",
+                            "notEquals": "global"
+                          }
+                        ]
+                      },
+                      {
+                        "allOf": [
+                          {
+                            "field": "type",
+                            "equals": "Microsoft.web/serverfarms"
+                          },
+                          {
+                            "field": "kind",
+                            "in": [
+                              "functionapp",
+                              ""
+                            ]
+                          },
+                          {
+                            "field": "Microsoft.web/serverfarms/sku.name",
+                            "equals": "Y1"
+                          },
+                          {
+                            "field": "Microsoft.web/serverfarms/sku.tier",
+                            "equals": "Dynamic"
+                          },
+                          {
+                            "field": "Microsoft.web/serverfarms/sku.capacity",
+                            "lessOrEquals": 0
+                          },
+                          {
+                            "field": "location",
+                            "In": [
+                              "[[resourceGroup().location]"
+                            ]
+                          },
+                          {
+                            "field": "location",
+                            "notEquals": "global"
+                          }
+                        ]
+                      },
+                      {
+                        "field": "type",
+                        "contains": "Microsoft.Storage/storageAccounts"
+                      }
+                    ]
+                  }
+                },
+                "then": {
+                  "effect": "deny"
+                }
+              }
+            }
+        }
+    ]
+}
