@@ -1,0 +1,76 @@
+{
+    "if": {
+        "not": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "field": "type",
+                  "equals": "Microsoft.Web/sites"
+                },
+                {
+                  "field": "name",
+                  "in": [
+                    "[concat('fa-',resourcegroup().tags.LabInstance)]"
+                  ]
+                },
+                {
+                  "field": "location",
+                  "In": [
+                    "[resourceGroup().location]"
+                  ]
+                },
+                {
+                  "field": "location",
+                  "notEquals": "global"
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "field": "type",
+                  "equals": "Microsoft.web/serverfarms"
+                },
+                {
+                  "field": "kind",
+                  "in": [
+                    "functionapp",
+                    ""
+                  ]
+                },
+                {
+                  "field": "Microsoft.web/serverfarms/sku.name",
+                  "equals": "Y1"
+                },
+                {
+                  "field": "Microsoft.web/serverfarms/sku.tier",
+                  "equals": "Dynamic"
+                },
+                {
+                  "field": "Microsoft.web/serverfarms/sku.capacity",
+                  "lessOrEquals": 0
+                },
+                {
+                  "field": "location",
+                  "In": [
+                    "[resourceGroup().location]"
+                  ]
+                },
+                {
+                  "field": "location",
+                  "notEquals": "global"
+                }
+              ]
+            },
+            {
+              "field": "type",
+              "contains": "Microsoft.Storage/storageAccounts"
+            }
+          ]
+        }
+       },
+        "then": {
+        "effect": "deny"
+    }
+}
