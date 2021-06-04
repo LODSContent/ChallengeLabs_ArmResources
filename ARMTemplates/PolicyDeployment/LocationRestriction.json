@@ -27,7 +27,7 @@
                             "description": "The list of locations that can be specified when deploying resources.",
                             "strongType": "location"
                         },
-                        "defaultValue": ["westus2", "eastus"]
+                        "defaultValue": ["eastus"]
                     }
                 },
                 "policyRule": {
