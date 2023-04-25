@@ -11,7 +11,7 @@
   "parameters": {
     "_artifactsLocation": {
       "type": "string",
-      "defaultValue": "[deployment().properties.templateLink.uri]",
+      "defaultValue": "https://github.com/LODSContent/ChallengeLabs_ArmResources/raw/master/DSCResources/WinFeatures/dscinstallwindowsfeatures.zip",
       "metadata": {
         "description": "The base URI where artifacts required by this template are located including a trailing '/'"
       }
@@ -175,7 +175,7 @@
     "ghostedSubnetNSGName": "[format('{0}NSG', parameters('ghostedSubnetName'))]",
     "azureVMsSubnetNSGName": "[format('{0}NSG', parameters('azureVMsSubnetName'))]",
     "azureVMsSubnetUDRName": "[format('{0}UDR', parameters('azureVMsSubnetName'))]",
-    "DSCInstallWindowsFeaturesUri": "[uri(parameters('_artifactsLocation'), format('dsc/dscinstallwindowsfeatures.zip{0}', parameters('_artifactsLocationSasToken')))]",
+    "DSCInstallWindowsFeaturesUri": "https://github.com/LODSContent/ChallengeLabs_ArmResources/raw/master/DSCResources/WinFeatures/dscinstallwindowsfeatures.zip",
     "HVHostSetupScriptUri": "[uri(parameters('_artifactsLocation'), format('hvhostsetup.ps1{0}', parameters('_artifactsLocationSasToken')))]"
   },
   "resources": [
