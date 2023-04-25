@@ -11,7 +11,7 @@
   "parameters": {
     "_artifactsLocation": {
       "type": "string",
-      "defaultValue": "https://github.com/LODSContent/ChallengeLabs_ArmResources/raw/master/DSCResources/WinFeatures/dscinstallwindowsfeatures.zip",
+      "defaultValue": "https://raw.githubusercontent.com/LODSContent/ChallengeLabs_ArmResources/master/ARMTemplates/301-nested-vms-in-virtual-network/azuredeploy.json",
       "metadata": {
         "description": "The base URI where artifacts required by this template are located including a trailing '/'"
       }
