@@ -175,8 +175,8 @@
     "ghostedSubnetNSGName": "[format('{0}NSG', parameters('ghostedSubnetName'))]",
     "azureVMsSubnetNSGName": "[format('{0}NSG', parameters('azureVMsSubnetName'))]",
     "azureVMsSubnetUDRName": "[format('{0}UDR', parameters('azureVMsSubnetName'))]",
-    "DSCInstallWindowsFeaturesUri": "https://github.com/LODSContent/ChallengeLabs_ArmResources/raw/master/DSCResources/WinFeatures/dscinstallwindowsfeatures.zip",
-    "HVHostSetupScriptUri": "https://github.com/LODSContent/ChallengeLabs_ArmResources/blob/master/ARMTemplates/301-nested-vms-in-virtual-network/hvhostsetup.ps1"
+    "DSCInstallWindowsFeaturesUri": "[uri(parameters('_artifactsLocation'), format('dsc/dscinstallwindowsfeatures.zip{0}', parameters('_artifactsLocationSasToken')))]",
+    "HVHostSetupScriptUri": "[uri(parameters('_artifactsLocation'), format('hvhostsetup.ps1{0}', parameters('_artifactsLocationSasToken')))]"
   },
   "resources": [
     {
