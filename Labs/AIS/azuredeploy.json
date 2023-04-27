@@ -105,7 +105,10 @@
             "apiVersion": "2018-02-01",
             "location": "[resourceGroup().location]",
             "properties": {
-                "publicIPAllocationMethod": null
+                "publicIPAllocationMethod": "Static"
+            },
+            "sku": {
+                "name": "Standard"
             },
             "dependsOn": []
         },
